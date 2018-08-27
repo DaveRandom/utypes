@@ -1,4 +1,3 @@
-dnl $Id$
 dnl config.m4 for extension utypes
 
 PHP_ARG_ENABLE(utypes, whether to enable utypes support,
