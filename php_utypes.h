@@ -36,15 +36,17 @@ extern zend_module_entry utypes_module_entry;
 #include "TSRM.h"
 #endif
 
+typedef struct _php_utypes_handler php_utypes_handler;
+
 ZEND_BEGIN_MODULE_GLOBALS(utypes)
-	zval callback;
-	zend_fcall_info fci;
-	zend_fcall_info_cache fcc;
+	php_utypes_handler default_handler;
 	zend_bool busy;
 	HashTable named;
 ZEND_END_MODULE_GLOBALS(utypes)
 
 #define UTG(v) ZEND_MODULE_GLOBALS_ACCESSOR(utypes, v)
+
+#define UTYPES_HAVE_DEFAULT_HANDLER() (!Z_ISNULL(UTG(callback)))
 
 #if defined(ZTS) && defined(COMPILE_DL_UTYPES)
 ZEND_TSRMLS_CACHE_EXTERN()
